@@ -1,5 +1,5 @@
 package ru.stimmax.lessons.lesson05.homework
-var j = 4;
+
 fun main() {
     //Начальная интенсивность звука
     var startingSoundIntensity: Double = 5.00
