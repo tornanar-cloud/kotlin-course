@@ -1,6 +1,4 @@
-package ru.stimmax.lessons.lesson04.howmework
-
-import java.util.concurrent.locks.Lock
+package ru.stimmax.lessons.lesson04.homework
 
 val v1: Byte = 42
 val v2: Long = 98765432123456789L
@@ -58,13 +56,13 @@ var  spoonSugar:Byte = 1
 //Хранить список расходов на доставку еды, чтобы ещё раз убедиться, что готовить было дешевле.
 var foodCostList : Map<Int, Map<Double, String>> = mapOf(1 to mapOf(25.00 to "Эклерчики") )
 //Хранить длину очереди в столовой до миллиардной доли сантиметра.
-val diningRoomLength: Double = 24565125151.000000942145514
+val diningRoomLength: Double = 245651251.06800009
 //Хранить факт, закрыт ли баг после того, как его просто переименовали в фичу.
 var bugClose: Boolean = true
 //Хранить количество свистков чайника за день.
 var teapotWhistles: Int = 10
 //Хранить количество нажатий котом на клавиатуру ноутбука за всё время твоей работы.
-var catKeypressCountcatKeypressCount:Long = 100000000000
+var catKeypressCountcatKeypressCount:Long = 10000
 //Хранить количество попыток пересчитать звёзды на небе за всю историю человечества.
 var totalStarCountingAttempts: Long = 100000000000
 //Хранить массу воздуха в спускающем матрасе после нападения кота в долях грамма.
