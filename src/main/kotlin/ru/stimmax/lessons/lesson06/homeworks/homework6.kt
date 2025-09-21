@@ -1,10 +1,10 @@
 package ru.stimmax.lessons.lesson06.homeworks
 
 fun main() {
-    determineSeason(2)
-    dogAgeToHumanAge(12)
-    determineTransportType(42)
-    calculateBonusPoints(1302)
+    //determineSeason(0)
+    //dogAgeToHumanAge(12)
+    //determineTransportType(42)
+    calculateBonusPoints(900)
 
     determineDocType("name.txt")
     determineDocType("name.xlsx")
@@ -80,14 +80,15 @@ fun determineTransportType(distance: Int) {
 }
 
 /*Задание 4: "Расчет бонусных баллов"
-Клиенты интернет-магазина получают бонусные баллы за покупки. Напишите функцию, которая принимает сумму покупки и печатает в консоль количество бонусных баллов: 2 балла за каждые 100 рублей при сумме покупки до 1000 рублей и 3 балла за каждые 100 рублей при сумме свыше этого.*/
+Клиенты интернет-магазина получают бонусные баллы за покупки. Напишите функцию, которая принимает сумму покупки и печатает в консоль количество бонусных баллов:
+2 балла за каждые 100 рублей при сумме покупки до 1000 рублей и 3 балла за каждые 100 рублей при сумме свыше этого.*/
 fun calculateBonusPoints(purchaseAmount: Int) {
     if (purchaseAmount > 0) {
         if (purchaseAmount < 1000) {
-            val res: Int = purchaseAmount / 2
+            val res: Int = (purchaseAmount / 100) * 2
             println("Количество бонусных баллов - $res")
         } else {
-            val res: Int = purchaseAmount / 3
+            val res: Int = (purchaseAmount /100) * 3
             println("Количество бонусных баллов - $res")
         }
     } else {
