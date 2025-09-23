@@ -30,6 +30,7 @@ fun main() {
     movieByAge(17)
     movieByAge(18)
     movieByAge(19)
+    println(2+10.5)
 }
 
 /*Задание 1: "Определение сезона"
@@ -146,7 +147,7 @@ fun recommendClothesForWeather(temperature: Int){
         when(temperature){
             in -30..9 -> println("куртка и шапка")
             in 10..18 -> println("ветровка")
-            in 19 .. 35->println("футболка и шорты")
+            else -> println("футболка и шорты")
         }
     }
 }
