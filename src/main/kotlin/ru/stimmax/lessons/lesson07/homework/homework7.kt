@@ -40,7 +40,7 @@ fun main() {
     println()
     //6.2 Создайте числовую переменную 'size'. Используйте цикл for с шагом 2 для вывода чисел от 3 до size не включая size.
     println("//6.2 Создайте числовую переменную 'size'. Используйте цикл for с шагом 2 для вывода чисел от 3 до size не включая size.")
-    var size: Int = 35
+    val size: Int = 35
     for (x in 3 until size step 2) {
         print("$x ")
     }
@@ -150,11 +150,11 @@ fun main() {
     println()
     //5 Напишите функцию, которая используя вложенные циклы while, выведет заполненный прямоугольник размером 5x3 из символов *.
     println("//5 Напишите функцию, которая используя вложенные циклы while, выведет заполненный прямоугольник размером 5x3 из символов *.")
-    rectangle5х3()
+    rectangle5x3()
     println()
 //6. Напишите функцию, которая используя цикл for найдёт суммы чётных и нечётных значений чисел от 1 до arg.
 println("//6. Напишите функцию, которая используя цикл for найдёт суммы чётных и нечётных значений чисел от 1 до arg.")
-sumEvenAndТotEvenNumber(13)
+sumEvenAndTotEvenNumber(13)
 }
 
 
@@ -194,7 +194,7 @@ fun sumEvenNumbers(arg: Int): Int {
 }
 
 //5 Напишите функцию, которая используя вложенные циклы while, выведет заполненный прямоугольник размером 5x3 из символов *.
-fun rectangle5х3() {
+fun rectangle5x3() {
 
     var x: Int = 1
     var y: Int = 1
@@ -212,7 +212,7 @@ fun rectangle5х3() {
 }
 
 //6. Напишите функцию, которая используя цикл for найдёт суммы чётных и нечётных значений чисел от 1 до arg.
-fun sumEvenAndТotEvenNumber(arg: Int) {
+fun sumEvenAndTotEvenNumber(arg: Int) {
     var evenRes: Int = 0
     var notEvenRes: Int = 0
     for (x in 1..arg) {
