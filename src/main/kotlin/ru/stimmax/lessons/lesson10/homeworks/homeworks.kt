@@ -1,4 +1,6 @@
-package ru.stimmax.lessons.lesson10
+package ru.stimmax.lessons.lesson10.homeworks
+
+import kotlin.collections.iterator
 
 fun main() {
     //1. Создайте пустой неизменяемый словарь, где ключи и значения - целые числа.
