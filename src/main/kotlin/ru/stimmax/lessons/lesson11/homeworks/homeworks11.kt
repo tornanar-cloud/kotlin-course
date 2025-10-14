@@ -46,8 +46,8 @@ fun a8(i: Int): String? {
 }
 
 //9. Не принимает аргументов и возвращает список nullable строк.
-fun a9(): List<String>? {
-    return null
+fun a9(): List<String?> {
+    return listOf()
 }
 
 //10. Принимает nullable строку и nullable целое число и возвращает nullable булево значение.
@@ -61,7 +61,7 @@ fun multiplyByTwo(i: Int): Int = i * 2
 
 //12. Создайте функцию isEven, которая принимает целое число и возвращает true, если число чётное, и false в противном случае.
 fun isEven(i: Int): Boolean {
-    return if (i % 2 == 0) true else false
+    return i % 2 == 0
 }
 
 //13. Напишите функцию printNumbersUntil, которая принимает целое число n и выводит на экран числа от 1 до n.
@@ -79,14 +79,13 @@ fun printNumbersUntil(n: Int) {
 //14. Создайте функцию findFirstNegative, которая принимает список целых чисел и возвращает первое отрицательное число в списке.
 // Если отрицательных чисел нет, функция должна вернуть null.
 fun findFirstNegative(il: List<Int>): Int? {
-    var res: Int? = null
+
     for (x in il) {
         if (x < 0) {
-            res = x
-            break
+           return x
         }
     }
-    return res
+    return null
 }
 
 //15. Напишите функцию processList, которая принимает список строк. Функция должна проходить по списку и выводить каждую строку.
@@ -95,7 +94,8 @@ fun processList(sl: List<String?>) {
     for (x in sl) {
         if (x == null) {
             return
-        } else println(x)
+        }
+        println(x)
     }
 
 }
