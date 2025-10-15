@@ -1,4 +1,4 @@
-package ru.stimmax.lessons.lesson12
+package ru.stimmax.lessons.lesson12.homeworks
 
 fun main() {
     //Задачи на приведение коллекции к значению
