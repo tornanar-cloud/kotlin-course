@@ -1,8 +1,8 @@
 package ru.stimmax.lessons.lesson14
 
-class Shelf(val capacity: Int, var items: MutableList<String>) {
+class Shelf(val capacity: Int ) {
 
-
+    private var items: MutableList<String> = mutableListOf()
     //Вместимость полки (capacity): максимальная сумма букв всех названий предметов, которые могут быть размещены на полке.
     //Список предметов (items): хранит названия предметов на полке.
 
@@ -33,7 +33,7 @@ class Shelf(val capacity: Int, var items: MutableList<String>) {
     //Определяет, вместится ли предмет на полку.
     //Возвращает true, если предмет вместится, и false, если места недостаточно.
     fun canAccommodate(item: String): Boolean {
-        return (item.length + items.sumOf { it.length } <= capacity)
+        return ((item.length + items.sumOf { it.length }) <= capacity)
     }
 
     //Проверка наличия предмета (containsItem):

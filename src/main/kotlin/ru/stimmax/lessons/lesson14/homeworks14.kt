@@ -15,7 +15,17 @@ fun main() {
 
     //5
     Concert("Вайяяяя","Задний двор",0.0,10).detailsPrint()
+    var r: Rack = Rack(4)
+    r.addShelf(Shelf(15))
+    r.addShelf(Shelf(15))
+    r.addShelf(Shelf(15))
+    for (x in r.getShelves().indices){
+        r.getShelves()[x].addItem("Итем$x")
+        r.getShelves()[x].addItem("Итем$x")
+        r.getShelves()[x].addItem("Итем$x")
+    }
 
+    r.printContents()
 }
 
 /* 1. Событие: вечеринка. Создайте класс Party, который описывает вечеринку. У него должны быть свойства location (String) и
