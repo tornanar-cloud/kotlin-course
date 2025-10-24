@@ -73,5 +73,18 @@ class Rack(var shelvesCount: Int) {
     //Перераспределяет предметы по имеющимся полкам, начиная с самых длинных. Если очередной предмет никуда не вмещается, его нужно пропустить и попробовать разместить следующий.
     //Удаляет полку с оставшимися предметами
     //Возвращает неизменяемый список предметов, которые не удалось удалить или пустой список если полки с таким индексом нет.
-    fun advancedRemoveShelf() {}
+    fun advancedRemoveShelf(index: Int): List<String> {
+        if (index !in shelves.indices) {
+            return emptyList()
+        }
+        val notReplacedItems = mutableListOf<String>()
+        val otherShelves = shelves - shelves[index]
+        for (item in shelves[index].getItems()) {
+            if (otherShelves.none { it.addItem(item) }) {
+                notReplacedItems.add(item)
+            }
+        }
+        shelves.removeAt(index)
+        return notReplacedItems.toList()
+    }
 }
