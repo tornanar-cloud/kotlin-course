@@ -63,7 +63,7 @@ class Rack(var shelvesCount: Int) {
     fun printContents() {
         var pat: String = "%d вместимость: %d доступно: %d"
         for(x in shelves.indices){
-            println(pat.format(x,shelves[x].capacity,(shelves[x].capacity-shelves[x].getItems().sumOf { it.length })))
+            println(pat.format(x,shelves[x].capacity,(shelves[x].capacity - shelves[x].getItems().sumOf { it.length })))
             println(shelves[x].getItems().joinToString( " , "))
         }
     }
