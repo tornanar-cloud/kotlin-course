@@ -1,5 +1,5 @@
 package ru.stimmax.lessons.lesson16.homeworks
-
+/*
 import ru.stimmax.lessons.lesson16.homeworks.animals.Animal
 import ru.stimmax.lessons.lesson16.homeworks.animals.Bird
 import ru.stimmax.lessons.lesson16.homeworks.animals.Cat
@@ -115,3 +115,4 @@ fun main() {
 
     s7.log(Exception("Ошибка"))
 }
+*/
