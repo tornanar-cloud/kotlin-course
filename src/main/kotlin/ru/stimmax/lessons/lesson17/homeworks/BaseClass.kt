@@ -1,4 +1,4 @@
-package ru.stimmax.lessons.lesson17
+package ru.stimmax.lessons.lesson17.homeworks
 
 abstract class BaseClass(
     // 1. объясни, почему это поле доступно в main() для чтения из класса ChildrenClass

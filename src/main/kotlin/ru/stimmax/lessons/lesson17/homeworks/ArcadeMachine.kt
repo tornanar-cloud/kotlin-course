@@ -1,4 +1,4 @@
-package ru.stimmax.lessons.lesson17
+package ru.stimmax.lessons.lesson17.homeworks
 
 class ArcadeMachine(val name: String, val model: String, private var pin: String = "1111") {
     private var isOn = false
