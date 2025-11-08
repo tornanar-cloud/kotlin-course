@@ -1,14 +1,16 @@
 package ru.stimmax.lessons.lesson17.homeworks
 
-class ArcadeMachine(val name: String, val model: String, private var pin: String = "1111") {
+class ArcadeMachine(val name: String, val model: String, private var pin: String = "1111", val color: String) {
     private var isOn = false
     private var isOsLoaded = false
-    private var installedGames = mutableListOf<String>("CS2", "Dota 2", "Hots")
-    private var hasJoystic = true
+    private val installedGames = mutableListOf<String>("CS2", "Dota 2", "Hots")
+    val hasJoystic = true
     private var balance = 0.0
-    private var supportPhoneNumber = "+7777777777"
+    var supportPhoneNumber = "+7777777777"
+        private set
     private var isSessionPaid = false
-    private var gameSessionPrice = 20.0
+    var gameSessionPrice = 20.0
+        private set
     private var owner: String = ""
 
     fun turnOn() {
@@ -43,12 +45,14 @@ class ArcadeMachine(val name: String, val model: String, private var pin: String
     }
 
     fun startGame(game: String) {
-        if (isSessionPaid) {
-            println("Запустил игру.\n Играем в игру $game\nЗакончили играть")
-            isSessionPaid = false
-        } else {
-            println("Нужно оплатить игровую сессию")
-        }
+        if (installedGames.contains(game)) {//Проверит есть ли игра в списке
+            if (isSessionPaid) {
+                println("Запустил игру.\n Играем в игру $game\nЗакончили играть")
+                isSessionPaid = false
+            } else {
+                println("Нужно оплатить игровую сессию")
+            }
+        } else println("Игра не установлена")
     }
 
     fun payGameSession() {

@@ -5,7 +5,7 @@ abstract class BaseClass(
     //Потому что там указано val privateVal: String, что является объявлением одноименной переменной
     private val privateVal: String,
     // 2. объясни, почему это поле недоступно в main()
-    //Потому что модификатор доступа rotected. Вызов доступен из класса и из его дочерних классов. В дочернем классе можно создать метод и использовать его как интерфейс.в main доступно не будет.
+    //Потому что модификатор доступа protected. Вызов доступен из класса и из его дочерних классов. В дочернем классе можно создать метод и использовать его как интерфейс.в main доступно не будет.
     protected val protectedVal: String,
     val publicVal: String
 ) {
@@ -16,8 +16,12 @@ abstract class BaseClass(
                 field = value
             }
         }
+        get(){
+            return if (field =="2") "2" else "1"
+        }
     protected var protectedField = "5. измени меня из функции main() через сеттер в наследнике"
     private var privateField = "6. добавь сеттер чтобы изменить меня из main()"
+    // Эту задачу нельзя выполнить
     fun getAll(): String {
         return mapOf(
             "privateVal" to privateVal,
@@ -59,11 +63,11 @@ abstract class BaseClass(
     protected class ProtectedClass() {}
 
     private class PrivateClass() {}
-
+/*
     fun setPrivateFieldValue(value: String) {
         privateField = value
     }
-
+*/
 
 }
 
@@ -103,7 +107,7 @@ class ChildrenClass(
 
     }
 
-    fun gerProtectedField(): String {
+    fun getProtectedFieldValue(): String {
         return protectedField
     }
 }
@@ -113,7 +117,7 @@ fun main() {
     a.publicField = "Антонио Бандерас"
     println(a.publicField)
     a.setProtectedFieldValue("изменил protectedField")
-    println(a.gerProtectedField())
+    println(a.getProtectedFieldValue())
     println(a.getAll())
     a.printText()
 }
