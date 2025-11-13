@@ -58,20 +58,63 @@ class PhrasesToListOfStrings() :
 /*
 5)Создай функцию transposition с двумя дженериками, которая принимает словарь с дженериками и возвращает словарь, в котором ключ и значения поменялись местами.
  */
-fun <T,V> transposition(map: Map<T,V>): Map<V,T> {
-    val m = mutableMapOf<V,T>()
-    map.forEach {m[it.value] = it.key}
+fun <T, V> transposition(map: Map<T, V>): Map<V, T> {
+    val m = mutableMapOf<V, T>()
+    map.forEach { m[it.value] = it.key }
     return m.toMap()
 }
 
 /*
-
+6)Напиши интерфейс Validator с дженериком с функцией валидации, которая будет принимать элемент с типом дженерика и возвращать булево значение.
  */
+interface Validator<T> {
+    fun validation(arg: T): Boolean
+}
+
+/*
+7)Создай класс StringValidator и имплементируй интерфейс Validator с типом String?. Реализуй проверку, что строка не является null, не пустая и не состоит из одних пробелов.
+ */
+class StringValidator() : Validator<String?> {
+    override fun validation(arg: String?): Boolean {
+        return !arg.isNullOrBlank()
+    }
+}
+
+//8) Создай класс OddValidator и имплементируй интерфейс Validator типизированный по Int. Реализуй проверку, что число чётное.
+class OddValidator() : Validator<Int> {
+    override fun validation(arg: Int): Boolean {
+        return arg % 2 == 0
+    }
+}
+
+/*
+9)Создай класс ListValidator с дженериком, ограниченным типом Number, имплементируй интерфейс Validator типизированный по типу List с nullable типом дженерика класса
+1.Реализуй проверку:
+1.1Ни один элемент списка не является null
+1.2Ни один элемент приведённый к типу Double не равен 0.0
+ */
+
+class ListValidator<T : Number>(): Validator<List<T?>>{
+    override fun validation(arg: List<T?>): Boolean {
+        return arg.all() {it != null && it.toDouble() != 0.0}
+    }
+}
+
+class ListValidator1<T : Number>(): Validator<List<T?>>{
+    override fun validation(arg: List<T?>): Boolean {
+        return !(arg.any() {it == null || it.toDouble() == 0.0})
+    }
+}
+
+
+
+//class ListValidator<T : Number>(val a: T){
+
 
 fun main() {
     val v = PhrasesToListOfStrings()
     println(v.convert("Кабы не было зимы в городах и сёлах."))
-    var l = listOf<String>("Привет как дела","ой замечательно вообще","Я так за тебя рад" )
+    var l = listOf<String>("Привет как дела", "ой замечательно вообще", "Я так за тебя рад")
     println(v.convertList(l))
 
     val m = mapOf(
@@ -88,4 +131,21 @@ fun main() {
     )
     println(transposition(m))
 
+    val b = StringValidator()
+    println(b.validation("Куку"))
+    println(b.validation(null))
+    println(b.validation("      "))
+    val o = OddValidator()
+    println(o.validation(5))
+    println(o.validation(4))
+
+    val z = ListValidator<Int>()
+    println(z.validation(listOf(2,1,3,5,7)))
+    println(z.validation(listOf(2,1,null,5,7)))
+    println(z.validation(listOf(2,1,3,0,7)))
+
+    val z1 = ListValidator1<Int>()
+    println(z1.validation(listOf(2,1,3,5,7)))
+    println(z1.validation(listOf(2,1,null,5,7)))
+    println(z1.validation(listOf(2,1,3,0,7)))
 }
