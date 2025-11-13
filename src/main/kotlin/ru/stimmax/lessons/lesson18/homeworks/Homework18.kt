@@ -292,7 +292,7 @@ class Washer1() : BaseTempRegulatableAndOpenableDevice(), Timable, WaterConnecti
     }
 
     override fun clean() {
-        if (isOn){
+        if (isOn) {
             println("Идет автопромывка")
         }
     }
@@ -325,15 +325,15 @@ class Teapot : BaseTempRegulatableAndOpenableDevice(), WaterContainer, Automatic
     }
 
     override fun fillWater(amount: Int) {
-        if (amount <= capacity){
+        if (amount <= capacity) {
             println("Налить воду $amount")
-        }else println("Так много воды я не могу налить")
+        } else println("Так много воды я не могу налить")
     }
 
     override fun getWater(amount: Int) {
-        if (amount <= capacity){
+        if (amount <= capacity) {
             println("Вылил воду $amount")
-        }else println("Вылил всю воду")
+        } else println("Вылил всю воду")
     }
 
     override fun emitLight() {
@@ -349,7 +349,7 @@ class Teapot : BaseTempRegulatableAndOpenableDevice(), WaterContainer, Automatic
     }
 }
 
-class Oven1: BaseTempRegulatableAndOpenableDevice(), AutomaticShutdown, Timable{
+class Oven1 : BaseTempRegulatableAndOpenableDevice(), AutomaticShutdown, Timable {
     override val sensorType: String = "Температурный сенсор"
 
     override val maxSensoredValue: Int = 241
@@ -386,11 +386,13 @@ class Oven1: BaseTempRegulatableAndOpenableDevice(), AutomaticShutdown, Timable{
     }
 
     override fun startMonitoring() {
-        if(isOn){println("Начал мониторинг")}
+        if (isOn) {
+            println("Начал мониторинг")
+        }
     }
 
     override fun setTimer(time: Int) {
-        if(isOn){
+        if (isOn) {
             println("Установлен таймер $time")
         }
     }
