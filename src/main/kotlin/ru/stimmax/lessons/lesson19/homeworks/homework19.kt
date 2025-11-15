@@ -52,6 +52,7 @@ class PhrasesToListOfStrings() :
         var tmp = mutableListOf<List<String>>()
         list.forEach { tmp.add(it.split(" ")) }
         return tmp.toList()
+
     }
 }
 
@@ -59,9 +60,7 @@ class PhrasesToListOfStrings() :
 5)Создай функцию transposition с двумя дженериками, которая принимает словарь с дженериками и возвращает словарь, в котором ключ и значения поменялись местами.
  */
 fun <T, V> transposition(map: Map<T, V>): Map<V, T> {
-    val m = mutableMapOf<V, T>()
-    map.forEach { m[it.value] = it.key }
-    return m.toMap()
+    return map.map{ it }.associate { it.value to it.key }
 }
 
 /*
