@@ -1,5 +1,6 @@
 package ru.stimmax.lessons.lesson20.homeworks20
 
+import ru.stimmax.lessons.lesson18.homeworks.main
 import kotlin.math.abs
 import kotlin.math.absoluteValue
 
@@ -10,8 +11,8 @@ class ExtensionsHomeworks {
 1)Определите функцию-расширение для массива чисел,
 которая не принимает аргументов и возвращает пару из чисел - первое и последнее. Если массив был пуст то вернуть пару из null значений.
  */
-fun <T : Number> Array<T>.fun1() = if (this.isEmpty()) null to null else this[0] to this[this.lastIndex]
-
+//fun <T : Number> Array<T>.fun1() = if (this.isEmpty()) null to null else this[0] to this[this.lastIndex]
+fun <T : Number> Array<T>.fun1() = if (this.isEmpty()) null to null else first() to last()
 
 /*
 2)Создайте функцию-расширение для изменяемого списка элементов:
@@ -22,13 +23,15 @@ fun <T : Number> Array<T>.fun1() = if (this.isEmpty()) null to null else this[0]
 по убыванию, если false (используем функции sort() и sortDescending()
  */
 fun <T : Comparable<T>> MutableList<T>.fun2(bSort: Boolean = true): List<T> {
+    val v = this.toList()
     if (bSort) {
         this.sort()
-        return this
+
     } else {
         this.sortDescending()
-        return this
+
     }
+    return v
 }
 
 /*
@@ -40,7 +43,8 @@ fun <T : Comparable<T>> MutableList<T>.fun2(bSort: Boolean = true): List<T> {
 5.Значений из nullable дженерика, взятых из изначального ключа-списка по индексу из аргумента, если такого индекса нет - значением будет null
  */
 fun <T> Map<T, List<T>>?.fun3(i: Int): Map<String, T?>? {
-    return this?.map { it }?.associate { it.key.toString() to it.value.getOrNull(i) }
+
+        return this?.map { it }?.associate { it.key.toString() to it.value.getOrNull(i) }
 }
 
 /*
@@ -124,6 +128,8 @@ fun main() {
     println("ӧԈԀӺӽԊèԂӸԂèӼӽԃӸ".decrypt(200))
 
     "Напридумывали всяких твиттеров и теперь фигеют".fun6(listOf("Petya", "Sanya", "Jora"))
+    val a = "Привет"
+    println(a.map { it + 5 })
 }
 
 
