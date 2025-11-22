@@ -81,7 +81,8 @@ fun sumIntOrDoubleValues(list: List<Any>): Double {
         } else 0.0
     }
   */
-   return list.sumOf { (it as? Int)?.toDouble() ?: (it as? Double) ?: 0.0 }
+  // return list.sumOf { (it as? Int)?.toDouble() ?: (it as? Double) ?: 0.0 }
+    return list.filter{ it is Number }.map { ((it as Number).toDouble())}.sum()
 
 }
 
@@ -123,4 +124,5 @@ fun main() {
     //Задача 6
     println(tryCastToListAndPrint(listOf(1,2,3,"4","5",4.0)))
     println(tryCastToListAndPrint(225151))
+
 }
