@@ -94,7 +94,7 @@ val func1: (String) -> String = {
 var c1 = 0
 val func2: (String) -> String = {
     it.split(" ").joinToString(" ") {
-        if (c1 == Colors.list.lastIndex) {
+        if (c1 > Colors.list.lastIndex) {
             c1 = 0
         }
         val s = it.colorize(Colors.list[c1])
@@ -129,7 +129,7 @@ val func3: (String) -> String = {
 
 fun main() {
     println(425151225.f2 { it.map { it.toString() } })
-    println(f4("Привет")())
+    println(f4("grhdrh")())
     println(4453.f5()("1111111"))
     val text =
         "Напиши функцию colorizeWords которая печатает слова из длинного предложения разбитого по пробелу разным цветом." + " Правило подбора цвета для каждого слова нужно передавать в виде функции, которая принимает слово и возвращает это же слово но уже в цвете через " + "функцию colorize."
