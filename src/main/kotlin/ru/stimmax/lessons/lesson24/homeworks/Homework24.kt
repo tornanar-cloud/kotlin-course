@@ -1,5 +1,7 @@
 package ru.stimmax.lessons.lesson24.homeworks
 
+import ru.stimmax.lessons.lesson16.homeworks.printColored
+
 //Задачи на синтаксис функций высшего порядка.
 
 //1)Создай функцию, которая:
@@ -56,28 +58,87 @@ object Colors {
     const val PURPLE = "\u001B[35m"
     const val CYAN = "\u001B[36m"
     const val WHITE = "\u001B[37m"
-    val list = listOf<String>("\u001B[0m","\u001B[31m","\u001B[32m","\u001B[33m","\u001B[34m","\u001B[35m","\u001B[36m","\u001B[37m")
+    val list = listOf<String>(
+        "\u001B[0m", "\u001B[31m", "\u001B[32m", "\u001B[33m", "\u001B[34m", "\u001B[35m", "\u001B[36m", "\u001B[37m"
+    )
 }
 
 fun String.colorize(color: String): String {
     return "$color$this${Colors.RESET}"
 }
 
-fun String.colorizeWords(fn:(String)-> String){
-   println(fn)
+fun String.colorizeWords(fn: (String) -> String) {
+    println(fn(this))
 }
 
+//цвет слова зависит от его характеристик (для каждой характеристики отдельный цвет):
+//*начинается с большой буквы
+//*длина меньше трёх символов
+//*длина больше 6 символов
+//*длина кратна двум
+//*для всех прочих отдельный цвет.
+val func1: (String) -> String = {
+    it.split(" ").joinToString(" ") {
+        when {
+            it[0].toString() == it[0].uppercase() -> it.colorize(Colors.RED)
+            it.length < 3 -> it.colorize(Colors.GREEN)
+            it.length > 6 -> it.colorize(Colors.YELLOW)
+            it.length % 2 == 0 -> it.colorize(Colors.BLUE)
+            else -> it.colorize(Colors.PURPLE)
+        }
+    }
 
+}
+
+//цвет слова выбирается по очереди из списка цветов для каждого слова через счётчик. Когда счётчик доходит до края списка слов - он обнуляется и начинается заново.
+var c1 = 0
+val func2: (String) -> String = {
+    it.split(" ").joinToString(" ") {
+        if (c1 == Colors.list.lastIndex) {
+            c1 = 0
+        }
+        val s = it.colorize(Colors.list[c1])
+        c1 += 1
+        s
+
+    }
+
+}
+// цвет слова выбирается по очереди из списка цветов для каждого слова через счётчик.
+// Счётчиком управляет функция, находящаяся в изменяемой переменной.
+// Сначала это функция с инкрементом счётчика. Когда счётчик доходит до края списка цветов, нужно заменить функцию счётчика на функцию с декрементом.
+// Когда счётчик доходит до нуля - заменить функцию счётчика на функцию с инкрементом и так далее.
+
+var c2 = 0
+
+var cc2 = { c2 += 1 }
+
+val func3: (String) -> String = {
+    it.split(" ").joinToString(" ") { o ->
+        if (c2 <= 0) {
+            cc2 = { c2 += 1 }
+        }
+        if (c2 >= Colors.list.lastIndex) {
+            cc2 = { c2 -= 1 }
+        }
+        val s = o.colorize(Colors.list[c2])
+        cc2()
+        s
+    }
+}
 
 fun main() {
     println(425151225.f2 { it.map { it.toString() } })
     println(f4("Привет")())
     println(4453.f5()("1111111"))
-    val text = "Напиши функцию colorizeWords которая печатает слова из длинного предложения разбитого по пробелу разным цветом." +
-            "Правило подбора цвета для каждого слова нужно передавать в виде функции, которая принимает слово и возвращает это же слово но уже в цвете через " +
-            "функцию colorize."
+    val text =
+        "Напиши функцию colorizeWords которая печатает слова из длинного предложения разбитого по пробелу разным цветом." + " Правило подбора цвета для каждого слова нужно передавать в виде функции, которая принимает слово и возвращает это же слово но уже в цвете через " + "функцию colorize."
 
 
-    val b = listOf<String>("Привет", "Как дела", "Угу")
-    println(b.joinToString { it })
+
+    text.colorizeWords(func1)
+    text.colorizeWords(func2)
+    text.colorizeWords(func3)
+
+
 }
