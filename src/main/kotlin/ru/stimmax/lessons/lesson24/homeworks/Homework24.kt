@@ -114,7 +114,7 @@ var cc2 = { c2 += 1 }
 
 val func3: (String) -> String = {
 
-        if (c2 <= 0) {
+    if (c2 <= 0) {
             cc2 = { c2 += 1 }
         }
         if (c2 >= Colors.list.lastIndex) {
