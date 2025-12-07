@@ -9,7 +9,7 @@ import ru.stimmax.lessons.lesson16.homeworks.printColored
 //2.принимает функцию, принимающую строку и ничего не возвращающую
 //3.возвращает целое число
 
-fun f1(b: Boolean, func: (String) -> Unit): Int {
+fun f1(b: Boolean, func: (a:String) -> Unit): Int {
     return 0
 }
 
@@ -18,7 +18,8 @@ fun f1(b: Boolean, func: (String) -> Unit): Int {
 //2.возвращает список строк
 
 fun Int.f2(func: Int.(String) -> List<String>): List<String> {
-    return func(this.toString())
+    //return func(this.toString())
+    return this.func(this.toString())
 }
 
 //3)Создай функцию с двумя дженериками расширяющую первый дженерик, которая:
@@ -33,8 +34,13 @@ fun <T, P> T.f3(func: T.() -> P): P {
 //4)Создай функцию, которая:
 //1.принимает строку
 //2.возвращает функцию, которая ничего не принимает и возвращает строку
-fun f4(s: String): () -> String {
-    return { s }
+fun f4(s: String):() -> String {
+    val a : () -> String ={s}
+    return a
+}
+fun f7(s: String): () -> String {
+
+    return {s}
 }
 
 //5)Создай функцию расширяющую дженерик, которая:
@@ -68,7 +74,7 @@ fun String.colorize(color: String): String {
 }
 
 fun String.colorizeWords(fn: (String) -> String) {
-    println(fn(this))
+   println( split(" ").joinToString(" ") { it.colorize(fn(it)) })
 }
 
 //цвет слова зависит от его характеристик (для каждой характеристики отдельный цвет):
@@ -78,30 +84,23 @@ fun String.colorizeWords(fn: (String) -> String) {
 //*длина кратна двум
 //*для всех прочих отдельный цвет.
 val func1: (String) -> String = {
-    it.split(" ").joinToString(" ") {
-        when {
-            it[0].toString() == it[0].uppercase() -> it.colorize(Colors.RED)
-            it.length < 3 -> it.colorize(Colors.GREEN)
-            it.length > 6 -> it.colorize(Colors.YELLOW)
-            it.length % 2 == 0 -> it.colorize(Colors.BLUE)
-            else -> it.colorize(Colors.PURPLE)
-        }
+    when {
+            it[0].toString() == it[0].uppercase() -> Colors.RED
+            it.length < 3 -> Colors.GREEN
+            it.length > 6 -> Colors.YELLOW
+            it.length % 2 == 0 -> Colors.BLUE
+            else -> Colors.PURPLE
     }
-
 }
 
 //цвет слова выбирается по очереди из списка цветов для каждого слова через счётчик. Когда счётчик доходит до края списка слов - он обнуляется и начинается заново.
 var c1 = 0
 val func2: (String) -> String = {
-    it.split(" ").joinToString(" ") {
+
         if (c1 > Colors.list.lastIndex) {
             c1 = 0
         }
-        val s = it.colorize(Colors.list[c1])
-        c1 += 1
-        s
-
-    }
+        Colors.list[c1++]
 
 }
 // цвет слова выбирается по очереди из списка цветов для каждого слова через счётчик.
@@ -114,17 +113,17 @@ var c2 = 0
 var cc2 = { c2 += 1 }
 
 val func3: (String) -> String = {
-    it.split(" ").joinToString(" ") { o ->
+
         if (c2 <= 0) {
             cc2 = { c2 += 1 }
         }
         if (c2 >= Colors.list.lastIndex) {
             cc2 = { c2 -= 1 }
         }
-        val s = o.colorize(Colors.list[c2])
+        val s = Colors.list[c2]
         cc2()
         s
-    }
+
 }
 
 fun main() {
@@ -136,9 +135,16 @@ fun main() {
 
 
 
-    text.colorizeWords(func1)
+   text.colorizeWords(func1)
     text.colorizeWords(func2)
     text.colorizeWords(func3)
 
 
+    val i1 = f4("Привет")
+    val i2 = f7("Куку")
+    println(i1)
+    println(i2)
+    var j = 0
+    println(j++)
+    println(j)
 }
