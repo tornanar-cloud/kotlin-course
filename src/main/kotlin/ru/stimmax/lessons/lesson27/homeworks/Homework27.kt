@@ -89,7 +89,16 @@ Enum со статусом прохождения теста в зависимо
  */
 
 fun  fn3(func:()->Unit): TestStatus{
-    return TestStatus
+    return try {
+        func()
+        TestStatus.passed
+    }catch (e: AssertionError) {
+        println(e)
+        return TestStatus.failed
+    }catch (e: Exception) {
+        println(e)
+        return TestStatus.broken
+    }
 }
 
 
