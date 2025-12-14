@@ -60,13 +60,13 @@ fun fn3() {
             it.mkdirs()
             val f = it.resolve("myDir")
             f.mkdir()
-             f.resolve("subDir1").mkdir()
+            f.resolve("subDir1").mkdir()
 
-             f.resolve("subDir2").mkdir()
+            f.resolve("subDir2").mkdir()
 
             val l = f.listFiles().map { it.name }
             println(l)
-            if (l.contains("subDir1") && l.contains("subDir2")){
+            if (l.contains("subDir1") && l.contains("subDir2")) {
                 println("Поддиректории subDir1 и subDir2 существуют")
                 println(f.absolutePath)
             }
@@ -79,49 +79,118 @@ fun fn3() {
 //Задача 4.
 // Создайте директорию workspace/task4/temp. Внутри директории temp создайте несколько вложенных файлов и директорий.
 // Удалите директорию workspace/task4 со всем содержимым
-fun fn4(){
+fun fn4() {
     File("workspace/task4/temp").also {
         it.mkdirs()
         var f1 = it.resolve("dir1")
         f1.mkdirs()
         f1 = f1.resolve("txt1.txt")
         f1.createNewFile()
-        if (f1.exists()){
+        if (f1.exists()) {
             println("Создана директория dir1 и файл txt1.txt")
         }
         var f2 = it.resolve("dir2")
         f2.mkdirs()
         f2 = f2.resolve("txt2.txt")
         f2.createNewFile()
-        if (f2.exists()){
+        if (f2.exists()) {
             println("Создана директория dir2 и файл txt2.txt")
         }
         //it.deleteRecursively()
-        if(!it.exists()){
+        if (!it.exists()) {
             println("Удалена директория /temp")
         }
     }
 }
+
 //Задача 5. Создайте файл workspace/task5/config/config.txt. запишите в него список параметров (в формате ключ=значение),
 // а затем прочитайте файл и выведите только значения.
-fun fn5(){
-    val dataMap = mapOf<String, Int>("Сила" to 2,"Ловкость" to 3000,"Харизма" to -5)
+fun fn5() {
+    val dataMap = mapOf<String, Int>("Сила" to 2, "Ловкость" to 3000, "Харизма" to -5)
     File("workspace/task5/config/config.txt").also { file ->
         file.parentFile.mkdirs()
         file.createNewFile()
         val dataWrite = dataMap.map { "${it.key} = ${it.value}" }.joinToString("\n")
         file.writeText(dataWrite)
-        val dataRead = file.readText().split("\n").map { it.substring(it.indexOf('=')+1,it.length) }
+        val dataRead = file.readText().split("\n").map { it.substring(it.indexOf('=') + 1, it.length) }
         println(dataRead)
     }
 }
+
 //Задача 6. Пройди по всем вложенным директориям workspace и выведи в консоль сначала пути директорий, а потом пути файлов
+fun fn6() {
+    var data = mutableListOf<String>()
+    File("workspace").also {
+        it.walk().forEach {
+            if (it.isFile) {
+                data.add(it.path)
+            } else if (it.isDirectory) {
+                data.add(0,it.path)
+            } else println("Я ничего не сделал. Не понял, что это, файл или директория")
+        }
+        println(data.joinToString("\n"))
+    }
+}
+
+//Задача 7
+// Создайте директорию workspace/task7/docs. Проверь, есть ли файл с именем readme.md.
+// Если файла нет, создайте его и запишите текст "This is a README file.". Проверьте текст в файле.
+fun fn7(){
+    File("workspace/task7/docs").also {
+        it.mkdirs()
+        val list = it.listFiles().filter { it.path.contains("readme.md",true) }
+        if(list.isEmpty() && it.exists()){
+            val f = it.resolve("readme.md")
+            f.createNewFile()
+            f.writeText("This is a README file.")
+        }else println("Файл уже создан")
+        println(list)
+    }
+}
+//Задача 8
+//Создайте файлы
+//
+//workspace/task8/data/1/4/prod/data14.mysql
+//workspace/task8/data/2/3/prod/data23.mysql
+//workspace/task8/data/5/2/prod/data52.mysql
+//Создайте директорию workspace/task8/backup и скопируйте туда файлы из workspace/task8/data сохраняя структуру директорий.
+// Для копирования используй метод copyTo. Для получения относительного пути начиная от data используй relativeTo от пути до файла,
+// передавая в него путь до базовой директории (то-есть data). Полученный relative фрагмент можно присоединить к пути бэкапа через resolve и
+// таким образом получить путь назначения копирования, например workspace/task8/backup/1/4/prod/data14.mysql сохраняя весь относительный путь.
+fun fn8() {
+    File("workspace/task8").deleteRecursively()
+    listOf(
+        "workspace/task8/data/1/4/prod/data14.mysql",
+        "workspace/task8/data/2/3/prod/data23.mysql",
+        "workspace/task8/data/5/2/prod/data52.mysql",
+    ).forEach {
+        File(it).apply {
+            parentFile?.mkdirs()
+        }.createNewFile()
+    }
+    val backup = File("workspace/task8/backup").also { it.mkdirs() }
+    File("workspace/task8/data").apply {
+        walk().filter { it.isFile }
+            .forEach {
+                println(it.path)
+                val relative = it.relativeTo(this)
+                println(relative)
+                it.copyTo(backup.resolve(relative))
+            }
+    }
+}
+
+//
+
 fun main() {
-    createExampleTxt()
-    createTestDirdirectory()
-    fn3()
-    fn4()
-    fn5()
+    //createExampleTxt()
+    //createTestDirdirectory()
+    //fn3()
+    //fn4()
+    //fn5()
+    //fn6()
+    fn7()
+    fn8()
 }
 
 
