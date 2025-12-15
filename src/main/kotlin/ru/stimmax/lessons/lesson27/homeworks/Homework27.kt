@@ -109,10 +109,11 @@ fun fn3(func: () -> Unit): TestStatus {
 Лямбда здесь выступает в качестве фильтра, который должен отфильтровать список всех планет по какому-либо признаку (расстояние или вес).
 Вернуть нужно первый элемент из отфильтрованного списка или выкинуть исключение если список пустой.
  */
-fun fn4(p:(Planet) -> Boolean): Planet{
-    return Planet
+fun fn4(func:(Planet) -> Boolean): Planet {
+    return Planet.entries.firstOrNull(func) ?: throw RuntimeException()
 }
 
 fun main() {
     ResidentialPropertyType.printResidentialPropertyTypeInfoBySortEnumName()
+    println(fn4 { it.distanceFromSunAu > 1.52 })
 }
