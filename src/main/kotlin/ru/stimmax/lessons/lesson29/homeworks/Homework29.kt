@@ -65,6 +65,22 @@ fun ctoToJsonAndWriteToFile(c: Employee) {
     }
 }
 
+//4.Создай функцию в которой:
+//прочитай текст из файла
+//десериализуй его в объект класса Employee
+//распечатай в консоль
+fun readFromCtoFile(){
+    File("ctoToJsonForTest.txt").also {
+        if(it.exists()){
+            println("Файл существует. Попытаюсь прочитать из файла")
+            val g = GsonBuilder().setPrettyPrinting().serializeNulls().create()
+            val j = it.readText()
+            val t = g.fromJson(j, Employee::class.java)
+            println(t)
+        }
+    }
+
+}
 fun main() {
     // Сгенерировал данные в ассистенте
     val cto = Employee(
@@ -111,6 +127,10 @@ fun main() {
         )
     )
     // В процессе
-
+//3Создай функцию в которой:
+// сериализуй CTO в текст с настройкой prettyPrinting
+//текст запиши в файл в корне проекта.
 ctoToJsonAndWriteToFile(cto)
+
+readFromCtoFile()
 }
