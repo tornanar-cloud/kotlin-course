@@ -1,0 +1,109 @@
+{
+  "name": "Иван Петров",
+  "isEmployed": true,
+  "birthday": "1980-04-15",
+  "position": "CTO",
+  "subordinates": [
+    {
+      "name": "Мария Сидорова",
+      "isEmployed": true,
+      "birthday": "1985-08-20",
+      "position": "PM",
+      "subordinates": [
+        {
+          "name": "Дмитрий Иванов",
+          "isEmployed": true,
+          "birthday": "1990-03-12",
+          "position": "TEAM_LEAD",
+          "subordinates": [
+            {
+              "name": "Артем Волков",
+              "isEmployed": true,
+              "birthday": "1993-05-18",
+              "position": "FRONTEND_DEV",
+              "subordinates": []
+            },
+            {
+              "name": "Екатерина Новикова",
+              "isEmployed": true,
+              "birthday": "1994-09-03",
+              "position": "FRONTEND_DEV",
+              "subordinates": []
+            },
+            {
+              "name": "Сергей Петров",
+              "isEmployed": true,
+              "birthday": "1992-01-22",
+              "position": "FRONTEND_DEV",
+              "subordinates": []
+            },
+            {
+              "name": "Анна Морозова",
+              "isEmployed": true,
+              "birthday": "1995-12-08",
+              "position": "QA",
+              "subordinates": []
+            },
+            {
+              "name": "Кристина Егорова",
+              "isEmployed": true,
+              "birthday": "1993-08-15",
+              "position": "UX_UI",
+              "subordinates": []
+            }
+          ]
+        },
+        {
+          "name": "Ольга Смирнова",
+          "isEmployed": true,
+          "birthday": "1989-07-25",
+          "position": "TEAM_LEAD",
+          "subordinates": [
+            {
+              "name": "Максим Федоров",
+              "isEmployed": true,
+              "birthday": "1991-06-14",
+              "position": "BACKEND_DEV",
+              "subordinates": []
+            },
+            {
+              "name": "Наталья Ковалева",
+              "isEmployed": true,
+              "birthday": "1994-04-27",
+              "position": "BACKEND_DEV",
+              "subordinates": []
+            },
+            {
+              "name": "Павел Орлов",
+              "isEmployed": true,
+              "birthday": "1990-10-19",
+              "position": "BACKEND_DEV",
+              "subordinates": []
+            },
+            {
+              "name": "Виктор Зайцев",
+              "isEmployed": true,
+              "birthday": "1988-02-11",
+              "position": "SYSADMIN",
+              "subordinates": []
+            },
+            {
+              "name": "Дарья Белова",
+              "isEmployed": true,
+              "birthday": "1996-03-05",
+              "position": "QA",
+              "subordinates": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Алексей Козлов",
+      "isEmployed": true,
+      "birthday": "1983-11-30",
+      "position": "CRM",
+      "subordinates": []
+    }
+  ]
+}

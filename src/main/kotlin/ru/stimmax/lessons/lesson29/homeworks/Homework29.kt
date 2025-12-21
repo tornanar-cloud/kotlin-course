@@ -1,5 +1,9 @@
 package ru.stimmax.lessons.lesson29.homeworks
 
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
+import java.io.File
+
 /*
 Задание 1
 
@@ -46,6 +50,20 @@ enum class CharacterTypes {
 //2.Создай объекты рабочей группы так, чтобы у CTO был PM и CRM, у PM было два тим-лида (на фронт и бэк) и у каждого
 // было по группе сотрудников подходящего для его стека профиля.
 
+//3Создай функцию в которой:
+// сериализуй CTO в текст с настройкой prettyPrinting
+//текст запиши в файл в корне проекта.
+fun ctoToJsonAndWriteToFile(c: Employee) {
+    val g = GsonBuilder().setPrettyPrinting().serializeNulls().create()
+    val j = g.toJson(c)
+    File("ctoToJsonForTest.txt").also {
+        it.createNewFile()
+        it.writeText(j)
+        if(it.exists()){
+            println("Файл создан по пути ${it.path}")
+        }
+    }
+}
 
 fun main() {
     // Сгенерировал данные в ассистенте
@@ -93,4 +111,6 @@ fun main() {
         )
     )
     // В процессе
+
+ctoToJsonAndWriteToFile(cto)
 }
