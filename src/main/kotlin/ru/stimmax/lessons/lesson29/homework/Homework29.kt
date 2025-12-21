@@ -92,4 +92,5 @@ fun main() {
             Employee("Алексей Козлов", true, "1983-11-30", CharacterTypes.CRM)
         )
     )
+    // В процессе
 }
